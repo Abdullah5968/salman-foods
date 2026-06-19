@@ -32,34 +32,55 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
         .map((i) => '• ${i.menuItem.name} x${i.quantity} = Rs ${i.totalPrice}')
         .join('\n');
     final message =
-        '''
-🍔 *NEW ORDER — $orderId*
+        '🍔 *NEW ORDER — $orderId*\n\n'
+        '👤 Name: ${_nameController.text}\n'
+        '📞 Phone: ${_phoneController.text}\n'
+        '📍 Address: ${_addressController.text}\n'
+        '${_notesController.text.isNotEmpty ? '📝 Notes: ${_notesController.text}\n' : ''}'
+        '\n🛒 *Order:*\n$items\n\n'
+        '💰 *Total: Rs ${cart.totalPrice}*\n\n'
+        '_Sent via Salman Foods App_';
 
-👤 Name: ${_nameController.text}
-📞 Phone: ${_phoneController.text}
-📍 Address: ${_addressController.text}
-${_notesController.text.isNotEmpty ? '📝 Notes: ${_notesController.text}' : ''}
-
-🛒 *Order:*
-$items
-
-💰 *Total: Rs ${cart.totalPrice}*
-
-_Sent via Salman Foods App_
-''';
     final encoded = Uri.encodeComponent(message);
-    final uri = Uri.parse('https://wa.me/923246278787?text=$encoded');
-    if (await canLaunchUrl(uri)) {
-      await launchUrl(uri);
-      cart.clearCart();
-      if (mounted)
-        Navigator.pushNamedAndRemoveUntil(context, '/home', (r) => false);
+
+    // Try WhatsApp direct first, then fallback to wa.me
+    final whatsappUri = Uri.parse(
+      'whatsapp://send?phone=923246278787&text=$encoded',
+    );
+    final webUri = Uri.parse('https://wa.me/923246278787?text=$encoded');
+
+    try {
+      bool launched = await launchUrl(
+        whatsappUri,
+        mode: LaunchMode.externalApplication,
+      );
+      if (!launched) {
+        await launchUrl(webUri, mode: LaunchMode.externalApplication);
+      }
+    } catch (e) {
+      try {
+        await launchUrl(webUri, mode: LaunchMode.externalApplication);
+      } catch (e2) {
+        if (mounted) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(
+              content: Text('Could not open WhatsApp. Please call us instead.'),
+            ),
+          );
+        }
+        return;
+      }
+    }
+
+    cart.clearCart();
+    if (mounted) {
+      Navigator.pushNamedAndRemoveUntil(context, '/home', (r) => false);
     }
   }
 
   Future<void> _callToOrder() async {
     final uri = Uri.parse('tel:+923246278787');
-    if (await canLaunchUrl(uri)) await launchUrl(uri);
+    await launchUrl(uri, mode: LaunchMode.externalApplication);
   }
 
   @override
@@ -79,7 +100,6 @@ _Sent via Salman Foods App_
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Order summary
             Container(
               padding: const EdgeInsets.all(16),
               decoration: BoxDecoration(
@@ -87,7 +107,7 @@ _Sent via Salman Foods App_
                 borderRadius: BorderRadius.circular(16),
                 boxShadow: [
                   BoxShadow(
-                    color: Colors.black.withOpacity(0.06),
+                    color: Colors.black.withValues(alpha: 0.06),
                     blurRadius: 8,
                   ),
                 ],
