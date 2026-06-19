@@ -74,7 +74,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
 
     cart.clearCart();
     if (mounted) {
-      Navigator.pushNamedAndRemoveUntil(context, '/home', (r) => false);
+      Navigator.of(context).popUntil((route) => route.isFirst);
     }
   }
 
