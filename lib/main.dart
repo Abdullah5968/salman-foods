@@ -8,6 +8,7 @@ import 'screens/home/home_screen.dart';
 import 'screens/menu/menu_screen.dart';
 import 'screens/cart/cart_screen.dart';
 import 'screens/checkout/checkout_screen.dart';
+import 'screens/deals/deals_screen.dart';
 
 void main() {
   runApp(
@@ -38,6 +39,7 @@ class SalmanFoodsApp extends StatelessWidget {
         '/': (context) => const SplashScreen(),
         '/home': (context) => const HomeScreen(),
         '/menu': (context) => const MenuScreen(),
+        '/deals': (context) => const DealsScreen(),
         '/cart': (context) => const CartScreen(),
         '/checkout': (context) => const CheckoutScreen(),
       },
