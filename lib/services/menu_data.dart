@@ -13,7 +13,7 @@ class MenuData {
     ),
     MenuItem(
       id: 'b2',
-      name: 'Chicken Shami Burger',
+      name: 'Shami & Anda Burger',
       emoji: '🍔',
       price: 220,
       oldPrice: 300,
@@ -62,7 +62,7 @@ class MenuData {
     ),
     MenuItem(
       id: 'b8',
-      name: 'Masty Burger',
+      name: 'Mighty Burger',
       emoji: '🍔',
       price: 500,
       category: 'Burgers',
@@ -114,7 +114,7 @@ class MenuData {
       tag: 'Special',
     ),
 
-    // WRAPS & SANDWICHES
+    // WRAPS
     MenuItem(
       id: 'w1',
       name: 'Chicken Paratha',
@@ -151,28 +151,30 @@ class MenuData {
     ),
     MenuItem(
       id: 'w5',
-      name: 'Chicken Sandwich',
-      emoji: '🥪',
-      price: 350,
-      oldPrice: 400,
-      category: 'Wraps',
-    ),
-    MenuItem(
-      id: 'w6',
-      name: 'Club Sandwich',
-      emoji: '🥪',
-      price: 400,
-      oldPrice: 500,
-      category: 'Wraps',
-      tag: 'Classic',
-    ),
-    MenuItem(
-      id: 'w7',
       name: 'Shappata Roll',
       emoji: '🥙',
       price: 600,
       category: 'Wraps',
       tag: 'Loaded',
+    ),
+
+    // SANDWICHES
+    MenuItem(
+      id: 'sw1',
+      name: 'Chicken Sandwich',
+      emoji: '🥪',
+      price: 350,
+      oldPrice: 400,
+      category: 'Sandwiches',
+    ),
+    MenuItem(
+      id: 'sw2',
+      name: 'Club Sandwich',
+      emoji: '🥪',
+      price: 400,
+      oldPrice: 500,
+      category: 'Sandwiches',
+      tag: 'Classic',
     ),
 
     // FRIES & SIDES
@@ -185,14 +187,14 @@ class MenuData {
     ),
     MenuItem(
       id: 'f2',
-      name: 'Mini Fries',
+      name: 'Half Loaded Fries',
       emoji: '🍟',
       price: 350,
       category: 'Fries',
     ),
     MenuItem(
       id: 'f3',
-      name: 'Loaded Fries',
+      name: 'Full Loaded Fries',
       emoji: '🍟',
       price: 600,
       category: 'Fries',
@@ -200,7 +202,7 @@ class MenuData {
     ),
     MenuItem(
       id: 'f4',
-      name: '5 Pcs Chicken Wings',
+      name: '5 Nuggets',
       emoji: '🍗',
       price: 250,
       category: 'Fries',
@@ -222,20 +224,27 @@ class MenuData {
     ),
     MenuItem(
       id: 'f7',
-      name: 'Siracha Dip',
-      emoji: '🌶️',
+      name: 'BBQ Dip',
+      emoji: '🍯',
       price: 80,
       category: 'Fries',
     ),
     MenuItem(
       id: 'f8',
+      name: 'Chilli Garlic Dip',
+      emoji: '🌶️',
+      price: 50,
+      category: 'Fries',
+    ),
+    MenuItem(
+      id: 'f9',
       name: 'Extra Bread',
       emoji: '🍞',
       price: 50,
       category: 'Fries',
     ),
     MenuItem(
-      id: 'f9',
+      id: 'f10',
       name: 'Cheese Slice',
       emoji: '🧀',
       price: 50,
@@ -278,6 +287,16 @@ class MenuData {
     return allItems.where((item) => item.category == category).toList();
   }
 
+  static List<String> get categories => [
+    'All',
+    'Burgers',
+    'Shawarma',
+    'Wraps',
+    'Sandwiches',
+    'Fries',
+    'Drinks',
+  ];
+
   static List<Map<String, dynamic>> deals = [
     {
       'num': 1,
@@ -289,7 +308,7 @@ class MenuData {
     {
       'num': 2,
       'name': 'Deal 2',
-      'desc': '5 Shami Burger + 1.5 Ltr Drink',
+      'desc': '5 Shami & Anda Burger + 1.5 Ltr Drink',
       'price': 1000,
       'emoji': '🍔',
     },
@@ -338,7 +357,7 @@ class MenuData {
     {
       'num': 9,
       'name': 'Deal 9',
-      'desc': 'Arabic Wrap + 5 Pcs Wings + Half Ltr Drink',
+      'desc': 'Arabic Wrap + 5 Nuggets + Half Ltr Drink',
       'price': 1100,
       'emoji': '🥙',
     },
