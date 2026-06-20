@@ -4,10 +4,19 @@ class MenuData {
   static List<MenuItem> allItems = [
     // BURGERS
     MenuItem(
-      id: 'b2',
-      name: 'Shami & Anda Burger',
+      id: 'b1',
+      name: 'Shami Burger',
       emoji: '🍔',
       price: 170,
+      oldPrice: 200,
+      category: 'Burgers',
+    ),
+    MenuItem(
+      id: 'b2',
+      name: 'Chicken Shami Burger',
+      emoji: '🍔',
+      price: 220,
+      oldPrice: 300,
       category: 'Burgers',
     ),
     MenuItem(
