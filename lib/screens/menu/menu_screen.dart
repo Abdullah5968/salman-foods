@@ -20,6 +20,7 @@ class _MenuScreenState extends State<MenuScreen> {
     'Burgers',
     'Shawarma',
     'Wraps',
+    'Sandwiches',
     'Fries',
     'Drinks',
   ];
@@ -127,7 +128,7 @@ class _MenuScreenState extends State<MenuScreen> {
                 color: isDark ? AppColors.darkSurface : Colors.white,
                 boxShadow: [
                   BoxShadow(
-                    color: Colors.black.withOpacity(0.1),
+                    color: Colors.black.withValues(alpha: 0.1),
                     blurRadius: 10,
                   ),
                 ],
@@ -156,7 +157,7 @@ class _MenuScreenState extends State<MenuScreen> {
         color: isDark ? AppColors.darkSurface : Colors.white,
         borderRadius: BorderRadius.circular(16),
         boxShadow: [
-          BoxShadow(color: Colors.black.withOpacity(0.06), blurRadius: 8),
+          BoxShadow(color: Colors.black.withValues(alpha: 0.06), blurRadius: 8),
         ],
       ),
       child: Padding(
@@ -187,7 +188,7 @@ class _MenuScreenState extends State<MenuScreen> {
                             vertical: 2,
                           ),
                           decoration: BoxDecoration(
-                            color: AppColors.secondary.withOpacity(0.2),
+                            color: AppColors.secondary.withValues(alpha: 0.2),
                             borderRadius: BorderRadius.circular(10),
                           ),
                           child: Text(
