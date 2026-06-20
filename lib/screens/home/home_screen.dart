@@ -85,7 +85,11 @@ class HomeScreen extends StatelessWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          const Text('🍔', style: TextStyle(fontSize: 36)),
+                          Image.asset(
+                            'assets/icon/icon.png',
+                            width: 50,
+                            height: 50,
+                          ),
                           Row(
                             children: [
                               GestureDetector(
@@ -126,9 +130,19 @@ class HomeScreen extends StatelessWidget {
                       ),
                       const SizedBox(height: 20),
                       const Text(
+                        'SALMAN FOODS',
+                        style: TextStyle(
+                          fontSize: 32,
+                          fontWeight: FontWeight.w900,
+                          color: Colors.white,
+                          letterSpacing: 2,
+                        ),
+                      ).animate().fadeIn(duration: 400.ms),
+                      const SizedBox(height: 6),
+                      const Text(
                         'GOOD FOOD\nGOOD MOOD',
                         style: TextStyle(
-                          fontSize: 36,
+                          fontSize: 30,
                           fontWeight: FontWeight.bold,
                           color: Colors.white,
                           height: 1.1,
